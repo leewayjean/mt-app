@@ -1,14 +1,12 @@
-/*一级路由*/
-import Goods from "../components/goods/Goods.vue"
-import Ratings from "../components/ratings/Ratings.vue"
-import Seller from "../components/seller/Seller.vue"
-
-
 
 export const routes = [
-	{path:"/",redirect:"/goods"},
-	{path:"/goods",component:Goods},
-	{path:"/ratings",component:Ratings},
-	{path:"/sellers",component:Seller},
+	{path:"/",component:()=>import("../components/goods/Goods.vue")},
+	{path:"/ratings",component:()=>import("../components/ratings/Ratings.vue"),redirect:"/ratings/commentall",children:[
+		{path:"/ratings/commentall",component:()=>import("../components/ratings/rating/CommentAll.vue")},
+		{path:"/ratings/all2",component:()=>import("../components/ratings/rating/all2.vue")},
+		{path:"/ratings/all3",component:()=>import("../components/ratings/rating/all3.vue")},
+	]},
+	{path:"/sellers",component:()=>import("../components/seller/Seller.vue")},
+	{path:"*",component:()=>import("../components/goods/Goods.vue")}
 
 ]

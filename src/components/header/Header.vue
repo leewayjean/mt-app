@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="head-bg" v-bind:style="head_bg"></div>
+    <div class="head-bg" :style="head_bg"></div>
     <!-- 顶部通栏 -->
     <div class="top-wrapper">
       <div class="back-wrapper">
@@ -26,30 +26,30 @@
     <!-- 头部中间开始 -->
     <div class="middle-wrapper">
       <!-- 店铺图标 -->
-      <div class="shop-icon" v-bind:style="shop_icon"></div>
+      <div class="shop-icon" :style="shop_icon"></div>
       <b class="shop-name">{{poiInfo.name}}</b>
       <!-- 收藏按钮 -->
       <span><i></i>收藏</span>
     </div>
     <!-- 头部中间结束 -->
     <!-- 头部脚部开始 -->
-    <div class="bottom-wrapper"  v-if="poiInfo.discounts2">
+    <div class="bottom-wrapper" v-if="poiInfo.discounts2">
       <div class="wrapper">
-        <img v-bind:src="poiInfo.discounts2[0].icon_url" alt="活动图标" class="activ-icon">
-        <span class="activ-text" >{{poiInfo.discounts2[0].info}}</span>
+        <img :src="poiInfo.discounts2[0].icon_url" alt="活动图标" class="activ-icon">
+        <span class="activ-text">{{poiInfo.discounts2[0].info}}</span>
       </div>
-      <a href="#" v-on:click.prevent="showMore">{{poiInfo.discounts2.length}}个活动<i class="icon-keyboard_arrow_right"></i></a>
+      <a href="#" @click.prevent="showMask">{{poiInfo.discounts2.length}}个活动<i class="icon-keyboard_arrow_right"></i></a>
     </div>
     <!--遮罩层 -->
-    <div class="detatils-wrapper" v-show="isShow"  v-if="poiInfo.discounts2">
-      <div class="main-wrapper" v-bind:style="poi_back_pic_url">
+    <div class="detatils-wrapper animated fadeIn" v-if="isShow" ref="detailsWrapper">
+      <div class="main-wrapper" :style="poi_back_pic_url">
         <div class="detatils-main">
           <!-- 店铺图标以及店铺名称 -->
-          <div class="shop-icon" v-bind:style="shop_icon"></div>
+          <div class="shop-icon" :style="shop_icon"></div>
           <b class="shop-name">{{poiInfo.name}}</b>
           <!-- 促销活动信息 -->
           <p class="top-line">
-            <img v-bind:src="poiInfo.discounts2[0].icon_url" alt="" class="activ-icon" >
+            <img class="activ-icon" alt="" :src="poiInfo.discounts2[0].icon_url">
             <span class="activ-text">{{poiInfo.discounts2[0].info}}</span>
           </p>
           <p class="activ-text">{{poiInfo.shipping_time}}</p>
@@ -60,7 +60,7 @@
           </p>
         </div>
         <!-- 关闭按钮 -->
-        <span class="close-btn" v-on:click="hiddenMask"><i class="icon-close"></i></span>
+        <span class="close-btn" @click="hiddenMask"><i class="icon-close"></i></span>
       </div>
     </div>
   </div>
@@ -74,20 +74,25 @@ export default {
   },
   props: ["poiInfo"],
   computed: {
+    //头部背景图
     head_bg() {
       return `background-image:url("${this.poiInfo.head_pic_url}"`;
     },
+    // 店铺图标
     shop_icon() {
       return `background-image:url("${this.poiInfo.pic_url}"`;
     },
+    //遮罩层背景图
     poi_back_pic_url() {
       return `background-image:url("${this.poiInfo.poi_back_pic_url}"`;
     }
   },
   methods: {
-    showMore() {
+    // 显示店铺详情页
+    showMask() {
       this.isShow = true;
     },
+    // 隐藏商品详情页
     hiddenMask() {
       this.isShow = false;
     }
@@ -281,6 +286,10 @@ form {
   font-size: 15px;
   font-weight: normal;
   margin-top: 13px;
+}
+
+.detatils-main .activ-text {
+  margin-top: 10px;
 }
 
 .top-line {

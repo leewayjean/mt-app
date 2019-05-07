@@ -5,23 +5,28 @@
     <!-- 导航 -->
     <app-nav ></app-nav>
     <!-- 主内容区 -->
-    <router-view></router-view>
-    <!-- 购物车 -->
-    <shop-cart></shop-cart>
+
+<!-- 
+  keep-alive => 保持组件的状态，避免重复渲染
+             => 不必重复请求数据，性能优
+             => 提升用户体验
+
+ -->
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
 
   </div>
 </template>
 <script>
 import Header from "./components/header/Header.vue"
 import Nav from "./components/nav/Nav.vue"
-import ShopCart from "./components/shopCart/ShopCart.vue"
 
 export default {
   name: "app",
   components: {
     "app-header": Header,
     "app-nav": Nav,
-    "shop-cart":ShopCart
   },
   data() {
     return {
@@ -38,6 +43,3 @@ export default {
 }
 
 </script>
-<style scoped>
-
-</style>

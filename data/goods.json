@@ -4,13 +4,7 @@
 			"tag_name": "专场",
 			"tag_icon": "http://p1.meituan.net/xianfu/a4167074795cfb33d819fd0590d1545b2048.png",
 			"operation_source_list": [
-				{
-					"scheme": "meituanwaimai://waimai.meituan.com/productset?wmpoiid=495579&productsettag=1239222&provider=0",
-					"content": "",
-					"pic_url": "http://p1.meituan.net/xianfu/6588840adbcfbfe2c7a43aa69d4b36da107767.jpg",
-					"sequence": 0,
-					"type": 1
-				}, {
+ 				{
 					"scheme": "meituanwaimai://waimai.meituan.com/productset?wmpoiid=495579&productsettag=1239645&provider=0",
 					"content": "",
 					"pic_url": "http://p1.meituan.net/xianfu/378446763167442a511dc9d4c675d877144571.jpg",
